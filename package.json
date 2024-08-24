@@ -1,0 +1,20 @@
+{
+	"name": "@socket-mesh/draw",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"build": "npm run build:models && npm run build:client && npm run build:server",
+		"build:client": "cd packages/client && npm run build",
+		"build:models": "cd packages/models && npm run build",
+		"build:server": "cd packages/server && npm run build",
+		"start": "npm run build && cd dist && node index.js",
+		"test": "npm run test:client && npm run test:server"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.11",
+		"cross-env": "^7.0.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.5.4"
+	}
+}

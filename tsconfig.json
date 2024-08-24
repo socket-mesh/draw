@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.build.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"noEmit": true,
+		"paths": {
+			"@socket-mesh/draw-client": ["./packages/client/src/index.ts"],
+			"@socket-mesh/draw-models": ["./packages/models/src/index.ts"],
+			"@socket-mesh/draw-server": ["./packages/server/src/index.ts"]
+		}
+	},
+	"exclude": ["**/dist"]
+}

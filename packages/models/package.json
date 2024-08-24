@@ -1,0 +1,25 @@
+{
+	"name": "@socket-mesh/draw-models",
+	"description": "",
+	"version": "0.0.1",
+	"type": "module",
+  "main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": ["./dist"],
+	"scripts": {
+		"build": "node ./scripts/build.mjs && tsc --project tsconfig.build.json",
+		"start": "node ts-node ./src/index.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/socket-mesh/draw.git"
+	},
+	"bugs": {
+		"url": "https://github.com/socket-mesh/draw/labels/models"
+	},
+	"keywords": [],
+	"author": "Greg Kimmy",
+	"license": "MIT",
+	"homepage": "https://github.com/socket-mesh/draw"
+}

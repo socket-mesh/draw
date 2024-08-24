@@ -1,0 +1,33 @@
+{
+  "name": "@socket-mesh/draw-server",
+  "description": "",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "node ./scripts/build.mjs && tsc --project tsconfig.build.json",
+    "start": "node ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/socket-mesh/draw.git"
+  },
+  "bugs": {
+		"url": "https://github.com/socket-mesh/draw/labels/server"
+  },
+  "keywords": [],
+  "author": "Greg Kimmy",
+  "license": "MIT",
+  "homepage": "https://github.com/socket-mesh/draw",
+  "dependencies": {
+    "express": "^4.19.2",
+		"@socket-mesh/core": "1.0.2",
+		"@socket-mesh/server": "18.1.1",
+		"@socket-mesh/draw-models": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+		"@types/jsonwebtoken": "^9.0.6",
+		"@types/ws": "^8.5.11"
+  }
+}

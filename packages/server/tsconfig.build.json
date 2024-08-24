@@ -1,0 +1,9 @@
+{
+	"extends": "../../tsconfig.build.json",
+	"include": ["src"],
+	"compilerOptions": {
+		"module": "Node16",
+		"outDir": "../../dist",
+		"declaration": false
+	}
+}

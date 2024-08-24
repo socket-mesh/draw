@@ -1,0 +1,32 @@
+{
+  "name": "@socket-mesh/draw-client",
+  "description": "",
+  "version": "0.0.1",
+	"type": "module",
+  "scripts": {
+    "buildold": "node ./scripts/build.mjs && tsc --project tsconfig.build.json",
+		"build": "node ./scripts/build.mjs && rollup --config ./rollup.config.js",
+    "start": "node ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socket-mesh/draw.git"
+  },
+  "bugs": {
+		"url": "https://github.com/socket-mesh/draw/labels/client"
+  },
+  "keywords": [],
+  "author": "Greg Kimmy",
+  "license": "MIT",
+  "homepage": "https://github.com/socket-mesh/draw",
+	"devDependencies": {
+		"rollup": "^4.21.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"tslib": "^2.6.3"
+	},
+  "dependencies": {
+		"@socket-mesh/client": "18.1.2"
+  }
+}
