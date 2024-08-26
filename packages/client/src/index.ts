@@ -2,6 +2,8 @@ import { ClientSocket, ClientSocketOptions } from "@socket-mesh/client";
 import { DrawChannelMap, DrawServiceMap } from '@socket-mesh/draw-models';
 import env from "./env.js";
 
+declare const DEBUG: boolean;
+
 interface DrawClientMap {
 	Channel: DrawChannelMap,
 	Incoming: {},
@@ -11,10 +13,8 @@ interface DrawClientMap {
 	State: {}
 }
 
-const WS_PORT = 8000;
-
 const clientOptions: ClientSocketOptions<DrawClientMap> = {
-	address: `${env.address}:${WS_PORT}`,
+	address: `${env.address}:${env.port}`,
 	ackTimeoutMs: 200
 }
 
@@ -26,7 +26,6 @@ const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 let resizeTimeout: NodeJS.Timeout;
 
-console.log(canvasDiv.clientWidth);
 canvas.width  = canvasDiv.clientWidth;
 canvas.height = canvasDiv.clientHeight;
 
@@ -51,6 +50,10 @@ canvas.height = canvasDiv.clientHeight;
 (async () =>  {
 	for await (const e of client.channels.subscribe('draw')) {
 		ctx.fillRect(e.x, e.y, 2, 2);
+
+		if (e.id === client.id) {
+			console.log(`Ping ${new Date().valueOf() - e.timestamp}`);
+		}
 	}
 })();
 
@@ -83,7 +86,7 @@ window.addEventListener('resize', (e) => {
 canvas.addEventListener('mousedown', async (e) => {
 	if ((e.buttons & 1) === 1) {
 		try {
-			await client.invoke('draw', { x: e.clientX, y: e.clientY });
+			await client.invoke('draw', { id: client.id, x: e.clientX, y: e.clientY, timestamp: new Date().valueOf() });
 		} catch (err) {
 			console.log('invoke error', err);
 		}
@@ -93,7 +96,7 @@ canvas.addEventListener('mousedown', async (e) => {
 canvas.addEventListener('mousemove', async (e) => {
 	if ((e.buttons & 1) === 1) {
 		try {
-			await client.invoke('draw', { x: e.clientX, y: e.clientY });
+			await client.invoke('draw', { id: client.id, x: e.clientX, y: e.clientY, timestamp: new Date().valueOf() });
 		} catch (err) {
 			console.log('invoke error', err);
 		}
@@ -102,7 +105,7 @@ canvas.addEventListener('mousemove', async (e) => {
 
 clearButton.addEventListener('click', async (e) => {
 	try {
-		client.channels.write('clear', {});
+		client.channels.invokePublish('clear', {});
 	} catch (err) {
 		console.log('publish error', err);
 	}

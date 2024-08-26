@@ -1,14 +1,16 @@
-export type Point = {
+export type Draw = {
+	id: string,
 	x: number,
-	y: number
+	y: number,
+	timestamp: number
 }
 
 export type DrawChannelMap = {
-	draw: Point,
+	draw: Draw,
 	clear: {}
 }
 
 export type DrawServiceMap = {
 	clear: () => void,
-	draw: (point: Point) => void
+	draw: (options: Draw) => number
 }

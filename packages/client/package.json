@@ -27,6 +27,6 @@
 		"tslib": "^2.6.3"
 	},
   "dependencies": {
-		"@socket-mesh/client": "18.1.2"
+		"@socket-mesh/client": "18.1.4"
   }
 }

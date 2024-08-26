@@ -1,12 +1,12 @@
 import { RequestHandlerArgs } from '@socket-mesh/core';
 import { BasicServerMap, listen } from '@socket-mesh/server';
-import { DrawChannelMap, DrawServiceMap, Point } from '@socket-mesh/draw-models';
+import { DrawChannelMap, DrawServiceMap, Draw } from '@socket-mesh/draw-models';
 import express from 'express';
 import path from 'path';
 
+// ---------------- Express ----------------
 const app = express();
 const port = 3000;
-const WS_PORT = 8000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(process.cwd(), 'public')));
@@ -19,11 +19,14 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
+// -------------- Socket Mesh --------------
+const WS_PORT = 8000;
+
 const server = listen<BasicServerMap<DrawServiceMap, DrawChannelMap>>(
 	WS_PORT,
 	{
 		handlers: {
-			draw: async ({ options }: RequestHandlerArgs<Point>) => {
+			draw: async ({ options }: RequestHandlerArgs<Draw>) => {
 				await server.exchange.transmitPublish('draw', options);
 			},
 			clear: async () => {
@@ -37,7 +40,6 @@ const server = listen<BasicServerMap<DrawServiceMap, DrawChannelMap>>(
 		console.log('connected');
 	}
 })();
-
 
 (async () =>  {
 	for await (const e of server.listen('socketClose')) {

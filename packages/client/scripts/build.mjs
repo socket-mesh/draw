@@ -15,9 +15,7 @@ function rmDirSync(path) {
 	}
 }
 
-let folder = Path.dirname(process.cwd());
-folder= Path.dirname(folder);
-
+const folder = Path.dirname(Path.dirname(process.cwd()));
 
 if (fs.existsSync(`${folder}/dist/public`)) {
 	rmDirSync(`${folder}/dist/public`);
