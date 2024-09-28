@@ -4,21 +4,12 @@ import env from "./env.js";
 
 declare const DEBUG: boolean;
 
-interface DrawClientMap {
-	Channel: DrawChannelMap,
-	Incoming: {},
-	Service: {},
-	Outgoing: DrawServiceMap,
-	PrivateOutgoing: {},
-	State: {}
-}
-
-const clientOptions: ClientSocketOptions<DrawClientMap> = {
+const clientOptions: ClientSocketOptions<DrawServiceMap> = {
 	address: `${env.address}:${env.port}`,
 	ackTimeoutMs: 200
 }
 
-const client = new ClientSocket(clientOptions);
+const client = new ClientSocket<DrawServiceMap, DrawChannelMap>(clientOptions);
 
 const clearButton = document.getElementById('clearButton');
 const canvasDiv = document.getElementsByClassName('canvas')[0];

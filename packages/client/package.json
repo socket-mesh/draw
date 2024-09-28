@@ -21,12 +21,12 @@
   "license": "MIT",
   "homepage": "https://github.com/socket-mesh/draw",
 	"devDependencies": {
-		"rollup": "^4.21.0",
-		"@rollup/plugin-node-resolve": "^15.2.3",
+		"rollup": "^4.22.5",
+		"@rollup/plugin-node-resolve": "^15.3.0",
 		"@rollup/plugin-typescript": "^11.1.6",
-		"tslib": "^2.6.3"
+		"tslib": "^2.7.0"
 	},
   "dependencies": {
-		"@socket-mesh/client": "18.1.4"
+		"@socket-mesh/client": "18.1.5"
   }
 }

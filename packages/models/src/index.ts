@@ -12,5 +12,5 @@ export type DrawChannelMap = {
 
 export type DrawServiceMap = {
 	clear: () => void,
-	draw: (options: Draw) => number
+	draw: (options: Draw) => void
 }

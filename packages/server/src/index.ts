@@ -1,5 +1,5 @@
 import { RequestHandlerArgs } from '@socket-mesh/core';
-import { BasicServerMap, listen } from '@socket-mesh/server';
+import { listen } from '@socket-mesh/server';
 import { DrawChannelMap, DrawServiceMap, Draw } from '@socket-mesh/draw-models';
 import express from 'express';
 import path from 'path';
@@ -22,7 +22,7 @@ app.listen(port, () => {
 // -------------- Socket Mesh --------------
 const WS_PORT = 8000;
 
-const server = listen<BasicServerMap<DrawServiceMap, DrawChannelMap>>(
+const server = listen<DrawServiceMap, DrawChannelMap>(
 	WS_PORT,
 	{
 		handlers: {
